@@ -1,0 +1,37 @@
+<div class="buttons-wrapper">
+    <a href="/" id="home" class="logo">nanobin</a>
+    <div class="buttons">
+      <a href="/new" id="new-button" class="btn">New</a>
+      <% if (locals.canSave) { %>
+        <button class="btn" id="save-button" type="submit">Save</button> 
+      <% } %>
+      <% if (locals.id != null) { %>
+        <a href="/<%= locals.id %>/duplicate" id="duplicate-button" class="btn">Duplicate</a>
+      <% } %>
+    </div>
+  </div>
+</div>
+<script>
+  document.addEventListener("keydown", e => {
+    if (!e.altKey) return; // Ignore key presses without Alt
+
+    switch (e.code) {
+        case "KeyQ":
+            document.getElementById("new-button").click();
+            break;
+        case "KeyW":
+            document.getElementById("save-button").click();
+            break;
+        case "KeyA":
+            document.getElementById("duplicate-button").click();
+            break;
+        case "KeyS":
+            document.getElementById("home").click();
+            break;
+        case "KeyC":
+            // get current url to clipboard
+            navigator.clipboard.writeText(window.location.href);
+            break;
+    }
+});  
+</script>
